@@ -4,6 +4,18 @@ public class BuildingsGrid : MonoBehaviour
 {
     public Vector2Int GridSize = new Vector2Int(10, 10);
 
+    [Header("First")]
+    [SerializeField][Range(0,1.0f)] private float rFirst;
+    [SerializeField][Range(0,1.0f)] private float gFirst;
+    [SerializeField][Range(0,1.0f)] private float bFirst;
+    [SerializeField][Range(0,1.0f)] private float aFirst;
+
+    [Header("Second")]
+    [SerializeField][Range(0,1.0f)] private float rSecond;
+    [SerializeField][Range(0,1.0f)] private float gSecond;
+    [SerializeField][Range(0,1.0f)] private float bSecond;
+    [SerializeField][Range(0,1.0f)] private float aSecond;
+
     private Building[,] grid;
     private Building flyingBuilding;
     private Camera mainCamera;
@@ -95,11 +107,11 @@ public class BuildingsGrid : MonoBehaviour
             {
                 if ((x + y) % 2 == 0)
                 {
-                    Gizmos.color = new Color(0f, 1f, 0f, 0.3f);
+                    Gizmos.color = new Color(rFirst, gFirst, bFirst, aFirst);
                 }
                 else
                 {
-                    Gizmos.color = new Color(1f, 0.68f, 0f, 0.3f);
+                    Gizmos.color = new Color(rSecond, gSecond, bSecond, aSecond);
                 }
 
                 Gizmos.DrawCube(transform.position + new Vector3(x, 0.1f, y), new Vector3(1, 0.1f, 1));

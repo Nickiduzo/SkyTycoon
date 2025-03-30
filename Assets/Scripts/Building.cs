@@ -7,7 +7,6 @@ public class Building : MonoBehaviour
 
     public void SetTransparent(bool avaible)
     {
-        print(avaible);
         if (avaible)
         {
             for (int i = 0; i < MainRenderer.Length; i++)
