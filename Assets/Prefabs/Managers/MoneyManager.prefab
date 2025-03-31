@@ -10,10 +10,11 @@ GameObject:
   m_Component:
   - component: {fileID: 4545248206690726981}
   - component: {fileID: 2871049414329494191}
+  - component: {fileID: 3576524050924638811}
   m_Layer: 0
   m_Name: MoneyManager
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -44,4 +45,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8c37fe1b286dff4787fce75eb59f7ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  money: {fileID: 11400000, guid: ec523ffda80e09b45ba59fb2bf75213b, type: 2}
+  moneyAmount: 0
+  diamondsAmount: 0
+  moneyPerMinute: 0
+--- !u!114 &3576524050924638811
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 393124437331750720}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c74a3e6fa556f3f49a044fcd69892ee5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

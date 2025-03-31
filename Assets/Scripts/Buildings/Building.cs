@@ -2,10 +2,14 @@ using UnityEngine;
 
 public class Building : MonoBehaviour
 {
+    [HideInInspector] public string id;
+
     [SerializeField] protected BuildingData BuildingData;
     
     public Renderer MainRenderer;
     public Vector2Int Size = Vector2Int.one;
+
+    public Vector3 position;
 
     protected bool isPlaced = false;
 
@@ -25,11 +29,27 @@ public class Building : MonoBehaviour
     {
         MainRenderer.materials = BuildingData.GetMaterials();
         isPlaced = true;
+        position = new Vector3(transform.position.x, transform.position.y, transform.position.z);
+        GenerateGuid();
+    }
+
+    private void GenerateGuid()
+    {
+        id = System.Guid.NewGuid().ToString();
     }
 
     public float GetBuildingPrice()
     {
         return BuildingData.Price;
+    }
+
+    public float GetMoneyIncreasing()
+    {
+        return BuildingData.MoneyPerMin;
+    }
+    public string GetId()
+    {
+        return id;
     }
 
     private void OnDrawGizmos()

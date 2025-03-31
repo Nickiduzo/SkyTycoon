@@ -2,64 +2,75 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    public float speed = 10f;
+    [Header("Change Camera Position")]
+    [SerializeField] private float speed = 10f;
 
-    private int width;
-    private int height;
+    [SerializeField] private float xRightLimit = 0;
+    [SerializeField] private float xLeftLimit = 0;
 
-    [SerializeField] private float boundary;
+    [SerializeField] private float zRightLimit = 0;
+    [SerializeField] private float zLeftLimit = 0;
 
+    [Header("Change Camera Zoom")]
+    [SerializeField] private float zoomSpeed = 6f;
+    [SerializeField] private float zoomSmoothness = 5f;
+
+    [SerializeField] private float minZoom = 2f;
+    [SerializeField] private float maxZoom = 40f;
+
+    [SerializeField] private float currentZoom;
+
+    private Camera mainCamera;
 
     private void Awake()
     {
-        width = Screen.width;
-        height = Screen.height;
+        mainCamera = Camera.main;
     }
 
     private void LateUpdate()
     {
+        ZoomCamera();
         MoveCamera();
+        SetLimits();
+    }
+
+    private void SetLimits()
+    {
+        if (transform.position.x > xRightLimit)
+        {
+            transform.position = new Vector3(xRightLimit, transform.position.y, transform.position.z);
+        }
+
+        if (transform.position.x < xLeftLimit)
+        {
+            transform.position = new Vector3(xLeftLimit, transform.position.y, transform.position.z);
+        }
+
+        if (transform.position.z > zRightLimit)
+        {
+            transform.position = new Vector3(transform.position.x, transform.position.y, zRightLimit);
+        }
+
+        if (transform.position.z < zLeftLimit)
+        {
+            transform.position = new Vector3(transform.position.x, transform.position.y, zLeftLimit);
+        }
     }
 
     private void MoveCamera()
     {
-        if (Input.GetMouseButton(1))
-        {
-            if (Input.GetAxis("Mouse X") > 0)
-            {
-                transform.position += new Vector3(Input.GetAxisRaw("Mouse X") * Time.deltaTime * speed,
-                                           0.0f, Input.GetAxisRaw("Mouse Y") * Time.deltaTime * speed);
-            }
+        float horizontal = Input.GetAxis("Mouse X");
+        float vertical = Input.GetAxis("Mouse Y");
 
-            else if (Input.GetAxis("Mouse X") < 0)
-            {
-                transform.position += new Vector3(Input.GetAxisRaw("Mouse X") * Time.deltaTime * speed,
-                                           0.0f, Input.GetAxisRaw("Mouse Y") * Time.deltaTime * speed);
-            }
-        }
-
-        if (Input.mousePosition.x > width - boundary)
+        if(Input.GetMouseButton(0))
         {
-            transform.position -= new Vector3(Input.GetAxisRaw("Mouse X") * Time.deltaTime * speed,
-                                       0.0f, 0.0f);
+            transform.position += new Vector3(-horizontal, 0, -vertical) * speed * Time.deltaTime;
         }
+    }
 
-        if (Input.mousePosition.x < 0 + boundary)
-        {
-            transform.position -= new Vector3(Input.GetAxisRaw("Mouse X") * Time.deltaTime * speed,
-                                       0.0f, 0.0f);
-        }
-
-        if (Input.mousePosition.y > height - boundary)
-        {
-            transform.position -= new Vector3(0.0f, 0.0f,
-                                       Input.GetAxisRaw("Mouse Y") * Time.deltaTime * speed);
-        }
-
-        if (Input.mousePosition.y < 0 + boundary)
-        {
-            transform.position -= new Vector3(0.0f, 0.0f,
-                                       Input.GetAxisRaw("Mouse Y") * Time.deltaTime * speed);
-        }
+    private void ZoomCamera()
+    {
+        currentZoom = Mathf.Clamp(currentZoom - Input.mouseScrollDelta.y * zoomSpeed * Time.deltaTime, minZoom, maxZoom);
+        mainCamera.orthographicSize = Mathf.Lerp(mainCamera.orthographicSize, currentZoom, zoomSmoothness * Time.deltaTime);
     }
 }

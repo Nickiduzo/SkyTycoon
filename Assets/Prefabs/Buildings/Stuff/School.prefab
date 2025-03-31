@@ -45,6 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd9c704de8383e74c95ccc781b90a395, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  id: 228327bb-cde9-46c6-b7e1-3ee212f33179
   BuildingData: {fileID: 11400000, guid: be67ba4ccc7f2eb409faa31f77e4811a, type: 2}
   MainRenderer: {fileID: 8176961213473467688}
   Size: {x: 6, y: 2}

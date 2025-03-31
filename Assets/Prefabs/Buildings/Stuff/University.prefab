@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8849321867540883927}
-  - component: {fileID: 8630427719094480847}
+  - component: {fileID: -311638660368743304}
   m_Layer: 0
   m_Name: University
   m_TagString: Untagged
@@ -33,7 +33,7 @@ Transform:
   - {fileID: 6209839554614210138}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8630427719094480847
+--- !u!114 &-311638660368743304
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -42,12 +42,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 5318186056619764875}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 71b6fac3544382246b519ef189db16c4, type: 3}
+  m_Script: {fileID: 11500000, guid: 229862a89b7dbb54b8d95ccfb3c2ed0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  id: 5d1e70fa-0cfc-44c9-85d0-36c822be2cae
+  BuildingData: {fileID: 11400000, guid: d3a0bdde1ee553d409b5e62a64df30e0, type: 2}
   MainRenderer: {fileID: 6209839554612309178}
   Size: {x: 6, y: 6}
-  defaultColor: {r: 0, g: 0, b: 0, a: 0}
+  increaseFactor: 2
 --- !u!1001 &6209839554614342874
 PrefabInstance:
   m_ObjectHideFlags: 0

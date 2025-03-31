@@ -150,6 +150,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 735f49d74a52a524b871621559b9f180, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  id: ae134715-58b4-4df9-8e3f-9425a8995f07
   BuildingData: {fileID: 11400000, guid: b389617b8fcbe9e4da6482aac9aec792, type: 2}
   MainRenderer: {fileID: 8321491571086256248}
   Size: {x: 1, y: 1}

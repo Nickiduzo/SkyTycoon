@@ -255,9 +255,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53477e0c117405049b71ff32f951350b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  id: b5571da9-49de-4dc0-b281-71f413944961
   BuildingData: {fileID: 11400000, guid: 4b96cb7292b7ace4f8972897234dcb23, type: 2}
   MainRenderer: {fileID: 1895083923122330668}
   Size: {x: 4, y: 4}
+  position: {x: 0, y: 0, z: 0}
   factorySlider: {fileID: 1018512443991575525}
   moneyPerMinuteText: {fileID: 5379312760576434134}
   buildingCanvas: {fileID: 6122409317669434916}

@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9175928928344785217}
-  - component: {fileID: 2448962473337123739}
+  - component: {fileID: 3468284755197242143}
   m_Layer: 0
   m_Name: Hall
   m_TagString: Untagged
@@ -33,7 +33,7 @@ Transform:
   - {fileID: 3108109068644757327}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2448962473337123739
+--- !u!114 &3468284755197242143
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -42,11 +42,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 3882895223310318186}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 71b6fac3544382246b519ef189db16c4, type: 3}
+  m_Script: {fileID: 11500000, guid: f00d5e7373b7022429b6129e92ce13c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  id: c409ce86-f22e-4e10-b73d-bdae221c2ebf
+  BuildingData: {fileID: 11400000, guid: 82c4a7257f9d4a647a82fb5370dc7be5, type: 2}
   MainRenderer: {fileID: 3108109068642332079}
   Size: {x: 4, y: 4}
+  position: {x: 0, y: 0, z: 0}
 --- !u!1001 &3108109068644627919
 PrefabInstance:
   m_ObjectHideFlags: 0

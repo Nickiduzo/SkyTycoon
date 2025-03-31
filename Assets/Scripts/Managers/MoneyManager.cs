@@ -38,6 +38,18 @@ public class MoneyManager : MonoBehaviour, IDataPersistence
         moneyPerMinute += amount;
     }
 
+    public void IncreaseDiamonds(float amount)
+    {
+        diamondsAmount += amount;
+    }
+
+    public void DecreaseDiamonds(float amount)
+    {
+        if(amount > diamondsAmount) return;
+
+        diamondsAmount -= amount;
+    }
+
     public void LoadData(GameData data)
     {
         this.diamondsAmount = data.diamonds;

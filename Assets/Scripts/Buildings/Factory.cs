@@ -40,8 +40,6 @@ public class Factory : Building
     public override void SetNormal()
     {
         base.SetNormal();
-        MoneyManager.Instance.IncreaseMoneyPerMinute(BuildingData.MoneyPerMin);
-        MoneyManager.Instance.DecreaseMoney(BuildingData.Price);
     }
 
     private void UpdateBar(float max, float current)

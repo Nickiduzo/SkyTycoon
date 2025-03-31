@@ -4,6 +4,9 @@ using UnityEngine;
 public class BuildingsGrid : MonoBehaviour, IDataPersistence
 {
     public Vector2Int GridSize = new Vector2Int(10, 10);
+    public List<Building> buildingPrefabs;
+
+    private Dictionary<string, Building> placedBuildings = new Dictionary<string, Building>();
 
     [Header("First")]
     [SerializeField][Range(0,1.0f)] private float rFirst;
@@ -17,16 +20,14 @@ public class BuildingsGrid : MonoBehaviour, IDataPersistence
     [SerializeField][Range(0,1.0f)] private float bSecond;
     [SerializeField][Range(0,1.0f)] private float aSecond;
 
+    private Camera mainCamera;
     private Building[,] grid;
     private Building flyingBuilding;
-    private List<Building> buildings;
 
-    private Camera mainCamera;
 
     private void Awake()
     {
         grid = new Building[GridSize.x, GridSize.y];
-        
         mainCamera = Camera.main;
     }
 
@@ -87,10 +88,18 @@ public class BuildingsGrid : MonoBehaviour, IDataPersistence
                 grid[placeX + x, placeY + y] = flyingBuilding;
             }
         }
+        SetBuildingFeatures();
+    }
 
+    private void SetBuildingFeatures()
+    {
         flyingBuilding.SetNormal();
+        MoneyManager.Instance.IncreaseMoneyPerMinute(flyingBuilding.GetMoneyIncreasing());
+        MoneyManager.Instance.DecreaseMoney(flyingBuilding.GetBuildingPrice());
         flyingBuilding.transform.SetParent(gameObject.transform);
-        buildings.Add(flyingBuilding);
+
+        placedBuildings.Add(flyingBuilding.GetId(), flyingBuilding);
+       
         flyingBuilding = null;
     }
 
@@ -129,11 +138,26 @@ public class BuildingsGrid : MonoBehaviour, IDataPersistence
 
     public void LoadData(GameData data)
     {
-        this.buildings = data.buildings;
+        foreach (var saveData in data.buildingsPlaced)
+        {
+            Building prefab = buildingPrefabs.Find(b => b.name == saveData.prefabName);
+            if (prefab != null)
+            {
+                Building buildingInstance = Instantiate(prefab, saveData.position, Quaternion.identity);
+                buildingInstance.id = saveData.id;
+                buildingInstance.SetNormal();
+
+                placedBuildings[buildingInstance.GetId()] = buildingInstance;
+            }
+        }
     }
 
     public void SaveData(ref GameData data)
     {
-        data.buildings = this.buildings;
+        data.buildingsPlaced.Clear();
+        foreach (var building in placedBuildings.Values)
+        {
+            data.buildingsPlaced.Add(new BuildingDataSave(building));
+        }
     }
 }
