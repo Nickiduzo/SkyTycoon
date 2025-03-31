@@ -45,9 +45,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71b6fac3544382246b519ef189db16c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MainRenderer:
-  - {fileID: 7437109766023885944}
+  MainRenderer: {fileID: 7437109766023885944}
   Size: {x: 2, y: 2}
+  BuildingData: {fileID: 11400000, guid: 17e7c2523ceeccc40b24e5bff45f6e6b, type: 2}
 --- !u!1001 &7437109766021852184
 PrefabInstance:
   m_ObjectHideFlags: 0

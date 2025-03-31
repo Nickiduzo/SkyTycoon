@@ -1,6 +1,7 @@
+using System.Collections.Generic;
 using UnityEngine;
 
-public class BuildingsGrid : MonoBehaviour
+public class BuildingsGrid : MonoBehaviour, IDataPersistence
 {
     public Vector2Int GridSize = new Vector2Int(10, 10);
 
@@ -18,6 +19,8 @@ public class BuildingsGrid : MonoBehaviour
 
     private Building[,] grid;
     private Building flyingBuilding;
+    private List<Building> buildings;
+
     private Camera mainCamera;
 
     private void Awake()
@@ -86,17 +89,22 @@ public class BuildingsGrid : MonoBehaviour
         }
 
         flyingBuilding.SetNormal();
+        flyingBuilding.transform.SetParent(gameObject.transform);
+        buildings.Add(flyingBuilding);
         flyingBuilding = null;
     }
 
     public void StartPlacingBuilding(Building buildingPrefab)
     {
-        if (flyingBuilding != null)
+        if(MoneyManager.Instance.moneyAmount >= buildingPrefab.GetBuildingPrice())
         {
-            Destroy(flyingBuilding.gameObject);
-        }
+            if (flyingBuilding != null)
+            {
+                Destroy(flyingBuilding.gameObject);
+            }
 
-        flyingBuilding = Instantiate(buildingPrefab);
+            flyingBuilding = Instantiate(buildingPrefab);
+        }
     }
 
     private void OnDrawGizmos()
@@ -117,5 +125,15 @@ public class BuildingsGrid : MonoBehaviour
                 Gizmos.DrawCube(transform.position + new Vector3(x, 0.1f, y), new Vector3(1, 0.1f, 1));
             }
         }
+    }
+
+    public void LoadData(GameData data)
+    {
+        this.buildings = data.buildings;
+    }
+
+    public void SaveData(ref GameData data)
+    {
+        data.buildings = this.buildings;
     }
 }

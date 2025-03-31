@@ -45,9 +45,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71b6fac3544382246b519ef189db16c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MainRenderer:
-  - {fileID: 4462516196925517327}
+  MainRenderer: {fileID: 4462516196925517327}
   Size: {x: 4, y: 3}
+  defaultMaterials:
+  - {fileID: 2100000, guid: d14afe0b179d2f24e95e6dbc3d596886, type: 2}
+  - {fileID: 2100000, guid: 4fe229b2d25565748a911830ab166af6, type: 2}
 --- !u!1001 &4462516196923618927
 PrefabInstance:
   m_ObjectHideFlags: 0

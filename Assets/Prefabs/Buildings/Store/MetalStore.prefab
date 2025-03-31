@@ -45,8 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71b6fac3544382246b519ef189db16c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MainRenderer:
-  - {fileID: 3189463751572153017}
+  MainRenderer: {fileID: 3189463751572153017}
   Size: {x: 1, y: 1}
 --- !u!1001 &3189463751570127577
 PrefabInstance:

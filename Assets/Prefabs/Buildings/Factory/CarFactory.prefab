@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8044831785427007298}
   - component: {fileID: 71378653908808386}
+  - component: {fileID: 5859208575938564949}
   m_Layer: 0
   m_Name: CarFactory
   m_TagString: Untagged
@@ -45,9 +46,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71b6fac3544382246b519ef189db16c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MainRenderer:
-  - {fileID: 6085927597145134166}
+  BuildingData: {fileID: 11400000, guid: 931a9b52e42180b4996ab95061b63c61, type: 2}
+  MainRenderer: {fileID: 6085927597145134166}
   Size: {x: 8, y: 4}
+--- !u!114 &5859208575938564949
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 474812931189608620}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53477e0c117405049b71ff32f951350b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BuildingData: {fileID: 11400000, guid: 931a9b52e42180b4996ab95061b63c61, type: 2}
+  MainRenderer: {fileID: 6085927597145134166}
+  Size: {x: 8, y: 4}
+  factorySlider: {fileID: 0}
+  moneyPerMinuteText: {fileID: 0}
+  buildingCanvas: {fileID: 0}
 --- !u!1001 &6085927597147294774
 PrefabInstance:
   m_ObjectHideFlags: 0

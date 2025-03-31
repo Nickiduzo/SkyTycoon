@@ -150,6 +150,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71b6fac3544382246b519ef189db16c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MainRenderer:
-  - {fileID: 8321491571086256248}
+  MainRenderer: {fileID: 8321491571086256248}
   Size: {x: 1, y: 1}
