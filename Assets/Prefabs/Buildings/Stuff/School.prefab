@@ -49,6 +49,26 @@ MonoBehaviour:
   BuildingData: {fileID: 11400000, guid: be67ba4ccc7f2eb409faa31f77e4811a, type: 2}
   MainRenderer: {fileID: 8176961213473467688}
   Size: {x: 6, y: 2}
+  position: {x: 0, y: 0, z: 0}
+  currentRotation: 0
+  buildingRotations:
+  - rotationName: East
+    buildingPosition: {x: 5, y: 0, z: 0.5}
+    buildingRotation: {x: 0, y: 0, z: 0}
+    rotationSize: {x: 6, y: 2}
+  - rotationName: North
+    buildingPosition: {x: 0.5, y: 0, z: 0}
+    buildingRotation: {x: 0, y: 90, z: 0}
+    rotationSize: {x: 2, y: 6}
+  - rotationName: West
+    buildingPosition: {x: 0, y: 0, z: 0.5}
+    buildingRotation: {x: 0, y: 180, z: 0}
+    rotationSize: {x: 6, y: 2}
+  - rotationName: South
+    buildingPosition: {x: 0.5, y: 0, z: 5}
+    buildingRotation: {x: 0, y: 270, z: 0}
+    rotationSize: {x: 2, y: 6}
+  buildingModel: {fileID: 8176961213471208424}
   increaseFactor: 1.5
 --- !u!1001 &8176961213471176008
 PrefabInstance:
@@ -107,6 +127,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 281f82fcf4326a14b93a95275cc06e7b, type: 3}
+--- !u!1 &8176961213471208424 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100000, guid: 281f82fcf4326a14b93a95275cc06e7b, type: 3}
+  m_PrefabInstance: {fileID: 8176961213471176008}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8176961213471567816 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 281f82fcf4326a14b93a95275cc06e7b, type: 3}

@@ -49,6 +49,26 @@ MonoBehaviour:
   BuildingData: {fileID: 11400000, guid: d3a0bdde1ee553d409b5e62a64df30e0, type: 2}
   MainRenderer: {fileID: 6209839554612309178}
   Size: {x: 6, y: 6}
+  position: {x: 0, y: 0, z: 0}
+  currentRotation: 0
+  buildingRotations:
+  - rotationName: East
+    buildingPosition: {x: 4.4, y: 0, z: 0.4}
+    buildingRotation: {x: 0, y: 0, z: 0}
+    rotationSize: {x: 6, y: 6}
+  - rotationName: North
+    buildingPosition: {x: 0.5, y: 0, z: 0.55}
+    buildingRotation: {x: 0, y: 90, z: 0}
+    rotationSize: {x: 6, y: 6}
+  - rotationName: West
+    buildingPosition: {x: 0.5, y: 0, z: 4.4}
+    buildingRotation: {x: 0, y: 180, z: 0}
+    rotationSize: {x: 6, y: 6}
+  - rotationName: South
+    buildingPosition: {x: 4.4, y: 0, z: 4.4}
+    buildingRotation: {x: 0, y: 270, z: 0}
+    rotationSize: {x: 6, y: 6}
+  buildingModel: {fileID: 6209839554614309498}
   increaseFactor: 2
 --- !u!1001 &6209839554614342874
 PrefabInstance:
@@ -64,7 +84,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: a75e0be201ab4934c8e02d63c6d26af6, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4.35
+      value: 4.4
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: a75e0be201ab4934c8e02d63c6d26af6, type: 3}
       propertyPath: m_LocalPosition.y
@@ -115,5 +135,10 @@ MeshRenderer:
 --- !u!4 &6209839554614210138 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: a75e0be201ab4934c8e02d63c6d26af6, type: 3}
+  m_PrefabInstance: {fileID: 6209839554614342874}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &6209839554614309498 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100000, guid: a75e0be201ab4934c8e02d63c6d26af6, type: 3}
   m_PrefabInstance: {fileID: 6209839554614342874}
   m_PrefabAsset: {fileID: 0}

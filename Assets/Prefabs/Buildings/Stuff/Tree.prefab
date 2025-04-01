@@ -49,6 +49,26 @@ MonoBehaviour:
   BuildingData: {fileID: 11400000, guid: bf5ce0d5bde1c014e8ecb57c03e6f089, type: 2}
   MainRenderer: {fileID: 2837500101010486365}
   Size: {x: 4, y: 4}
+  position: {x: 0, y: 0, z: 0}
+  currentRotation: 0
+  buildingRotations:
+  - rotationName: East
+    buildingPosition: {x: 2.5, y: 0, z: 0.5}
+    buildingRotation: {x: 0, y: 0, z: 0}
+    rotationSize: {x: 4, y: 4}
+  - rotationName: North
+    buildingPosition: {x: 0.5, y: 0, z: 0.5}
+    buildingRotation: {x: 0, y: 90, z: 0}
+    rotationSize: {x: 4, y: 4}
+  - rotationName: West
+    buildingPosition: {x: 0.5, y: 0, z: 2.5}
+    buildingRotation: {x: 0, y: 180, z: 0}
+    rotationSize: {x: 4, y: 4}
+  - rotationName: South
+    buildingPosition: {x: 2.5, y: 0, z: 2.5}
+    buildingRotation: {x: 0, y: 270, z: 0}
+    rotationSize: {x: 4, y: 4}
+  buildingModel: {fileID: 2837500101012744861}
 --- !u!1001 &2837500101012646973
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -114,5 +134,10 @@ MeshRenderer:
 --- !u!4 &2837500101012256445 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 614ea66fbc1ad5b419525776ae45054f, type: 3}
+  m_PrefabInstance: {fileID: 2837500101012646973}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &2837500101012744861 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100000, guid: 614ea66fbc1ad5b419525776ae45054f, type: 3}
   m_PrefabInstance: {fileID: 2837500101012646973}
   m_PrefabAsset: {fileID: 0}

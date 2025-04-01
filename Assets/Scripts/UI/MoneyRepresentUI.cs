@@ -25,7 +25,7 @@ public class MoneyRepresentUI : MonoBehaviour
         MoneyManager.Instance.IncreaseMoney(amount);
     }
 
-    private void GetMoneyPerMinute() => moneyPerHour.text = MoneyManager.Instance.moneyPerMinute.ToString() + "$";
+    private void GetMoneyPerMinute() => moneyPerHour.text = MoneyManager.Instance.moneyPerMinute.ToString() + "$ / MIN";
 
     private void GetDiamondAmount() => diamondAmount.text = MoneyManager.Instance.diamondsAmount.ToString();
 

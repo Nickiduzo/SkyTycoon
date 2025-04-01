@@ -162,7 +162,7 @@ RectTransform:
   m_GameObject: {fileID: 6670914658596639869}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0.203}
-  m_LocalScale: {x: 0.03, y: 0.004, z: 0.004}
+  m_LocalScale: {x: 0.025, y: 0.003, z: 0.003}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2326842638651119727}
@@ -326,7 +326,7 @@ GameObject:
   - component: {fileID: 9008580255284691231}
   - component: {fileID: 5382337273310549282}
   m_Layer: 0
-  m_Name: Image
+  m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -372,7 +372,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.20392157, g: 0.32156864, b: 0.40392157, a: 1}
+  m_Color: {r: 0.034798868, g: 0.2696009, b: 0.4339623, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -512,9 +512,29 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 1c56b476-3489-49fa-9ff4-ebe657b54d33
   BuildingData: {fileID: 11400000, guid: ca40783cd062872449dc7ce6efaccb8f, type: 2}
+  buildEffect: {fileID: 0}
   MainRenderer: {fileID: 1718087419729370120}
   Size: {x: 3, y: 2}
   position: {x: 0, y: 0, z: 0}
+  currentRotation: 0
+  buildingRotations:
+  - rotationName: East
+    buildingPosition: {x: 1.6, y: 0, z: 0.5}
+    buildingRotation: {x: 0, y: 0, z: 0}
+    rotationSize: {x: 3, y: 2}
+  - rotationName: North
+    buildingPosition: {x: 0.5, y: 0, z: 0.5}
+    buildingRotation: {x: 0, y: 90, z: 0}
+    rotationSize: {x: 2, y: 3}
+  - rotationName: West
+    buildingPosition: {x: 0.415, y: 0, z: 0.5}
+    buildingRotation: {x: 0, y: 180, z: 0}
+    rotationSize: {x: 3, y: 2}
+  - rotationName: South
+    buildingPosition: {x: 0.5, y: 0, z: 1.6}
+    buildingRotation: {x: 0, y: 270, z: 0}
+    rotationSize: {x: 2, y: 3}
+  buildingModel: {fileID: 0}
   factorySlider: {fileID: 9095510800131790057}
   moneyPerHour: {fileID: 826725534900893270}
   buildingCanvas: {fileID: 5787176602844064126}

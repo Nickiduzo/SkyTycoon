@@ -20,4 +20,5 @@ MonoBehaviour:
   - {fileID: 2100000, guid: a948b4e8ebb6e0a4a9e8baac56597b7a, type: 2}
   - {fileID: 2100000, guid: dd85904dbff75324591e64896cddd928, type: 2}
   price: 25
-  moneyPerMinute: 15
+  moneyPerMinute: 2.5
+  timeToEarn: 60

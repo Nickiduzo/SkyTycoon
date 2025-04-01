@@ -8,15 +8,12 @@ public class Store : Building
     [SerializeField] private TextMeshProUGUI moneyPerHour;
     [SerializeField] private Transform buildingCanvas;
 
-    private float timeToGetMoney = 3600f;
     private float coolDown;
 
-    private Factory[] factories;
-    private void Awake()
+    private void Start()
     {
         moneyPerHour.text = BuildingData.MoneyPerMin.ToString();
-        coolDown = timeToGetMoney;
-        factories = FindObjectsByType<Factory>(FindObjectsSortMode.None);
+        coolDown = BuildingData.TimeToEarn;
     }
 
     private void Update()
@@ -27,25 +24,18 @@ public class Store : Building
 
     private void CountMoney()
     {
+        if (!isPlaced) print(isPlaced);
         if (isPlaced)
         {
-            UpdateBar(3600, coolDown);
+            UpdateBar(BuildingData.TimeToEarn, coolDown);
 
             if(coolDown <= 0)
             {
-                coolDown = timeToGetMoney;
+                coolDown = BuildingData.TimeToEarn;
                 MoneyManager.Instance.IncreaseMoney(BuildingData.MoneyPerMin);
             }
             coolDown -= Time.deltaTime;
         }
-    }
-
-    public override void SetNormal()
-    {
-        if (factories.Length == 0) return;
-        base.SetNormal();
-        MoneyManager.Instance.IncreaseMoneyPerMinute(BuildingData.MoneyPerMin);
-        MoneyManager.Instance.DecreaseMoney(BuildingData.Price);
     }
 
     private void UpdateBar(float max, float current)
@@ -55,6 +45,8 @@ public class Store : Building
 
     private void LookAtBuildingCanvas()
     {
-        buildingCanvas.rotation = Quaternion.LookRotation(transform.position - Camera.main.transform.position);
+        Vector3 cameraForward = Camera.main.transform.forward;
+        cameraForward.y = 0;
+        buildingCanvas.rotation = Quaternion.LookRotation(cameraForward);
     }
 }

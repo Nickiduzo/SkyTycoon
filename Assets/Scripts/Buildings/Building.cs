@@ -5,11 +5,17 @@ public class Building : MonoBehaviour
     [HideInInspector] public string id;
 
     [SerializeField] protected BuildingData BuildingData;
+
+    [SerializeField] private ParticleSystem buildEffect;
     
     public Renderer MainRenderer;
     public Vector2Int Size = Vector2Int.one;
 
     public Vector3 position;
+
+    public int currentRotation;
+    public BuildingRotation[] buildingRotations;
+    public GameObject buildingModel;
 
     protected bool isPlaced = false;
 
@@ -33,9 +39,34 @@ public class Building : MonoBehaviour
         GenerateGuid();
     }
 
+    public void RotateBuilding(int value)
+    {
+        currentRotation += value;
+
+        if (currentRotation >= buildingRotations.Length)
+        {
+            currentRotation = 0;
+        }
+
+        if (currentRotation < 0)
+        {
+            currentRotation = buildingRotations.Length - 1;
+        }
+
+        buildingModel.transform.localPosition = buildingRotations[currentRotation].buildingPosition;
+        buildingModel.transform.localRotation = Quaternion.Euler(buildingRotations[currentRotation].buildingRotation);
+
+        Size = buildingRotations[currentRotation].rotationSize;
+    }
+
     private void GenerateGuid()
     {
         id = System.Guid.NewGuid().ToString();
+    }
+    
+    public void PlayBuildEffect()
+    {
+        buildEffect.Play();
     }
 
     public float GetBuildingPrice()
@@ -71,4 +102,13 @@ public class Building : MonoBehaviour
             }
         }
     }
+}
+
+[System.Serializable]
+public class BuildingRotation
+{
+    public string rotationName;
+    public Vector3 buildingPosition;
+    public Vector3 buildingRotation;
+    public Vector2Int rotationSize;
 }

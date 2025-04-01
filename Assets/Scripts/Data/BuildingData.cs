@@ -7,9 +7,13 @@ public class BuildingData : ScriptableObject
 
     [SerializeField] private float price = 0;
     [SerializeField] private float moneyPerMinute = 0;
+    [SerializeField] private float timeToEarn = 0;
 
     public float MoneyPerMin => moneyPerMinute;
     public float Price => price;
+
+    public float TimeToEarn => timeToEarn;
+    
     public Material[] GetMaterials()
     {
         return materials;

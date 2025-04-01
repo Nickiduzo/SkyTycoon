@@ -394,6 +394,81 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!1 &4629339735809750257
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2556486833596536805}
+  - component: {fileID: 4668139051165370031}
+  - component: {fileID: 208357900529352942}
+  m_Layer: 0
+  m_Name: Background
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &2556486833596536805
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4629339735809750257}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 835099585936962539}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &4668139051165370031
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4629339735809750257}
+  m_CullTransparentMesh: 1
+--- !u!114 &208357900529352942
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4629339735809750257}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.034798868, g: 0.2696009, b: 0.4339623, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
 --- !u!1 &5727059293624482273
 GameObject:
   m_ObjectHideFlags: 0
@@ -425,6 +500,7 @@ RectTransform:
   m_LocalScale: {x: 0.04, y: 0.004, z: 0.004}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 2556486833596536805}
   - {fileID: 2793655181651695861}
   - {fileID: 4870865186261503637}
   - {fileID: 379225885237991125}
@@ -546,9 +622,29 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 950502ed-8b5f-423d-b6be-fec465b4c387
   BuildingData: {fileID: 11400000, guid: fab65f3707beea140bb77444ff0b6d11, type: 2}
+  buildEffect: {fileID: 0}
   MainRenderer: {fileID: 2300000}
   Size: {x: 4, y: 4}
   position: {x: 0, y: 0, z: 0}
+  currentRotation: 0
+  buildingRotations:
+  - rotationName: East
+    buildingPosition: {x: 2.5, y: 0, z: 0.5}
+    buildingRotation: {x: 0, y: 0, z: 0}
+    rotationSize: {x: 4, y: 4}
+  - rotationName: North
+    buildingPosition: {x: 0.5, y: 0, z: 0.5}
+    buildingRotation: {x: 0, y: 90, z: 0}
+    rotationSize: {x: 4, y: 4}
+  - rotationName: West
+    buildingPosition: {x: 0.5, y: 0, z: 2.5}
+    buildingRotation: {x: 0, y: 180, z: 0}
+    rotationSize: {x: 4, y: 4}
+  - rotationName: South
+    buildingPosition: {x: 2.5, y: 0, z: 2.5}
+    buildingRotation: {x: 0, y: 270, z: 0}
+    rotationSize: {x: 4, y: 4}
+  buildingModel: {fileID: 100000}
   factorySlider: {fileID: 1797342675913409681}
   moneyPerMinuteText: {fileID: 6301021735473221183}
   buildingCanvas: {fileID: 835099585936962539}

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class CameraController : MonoBehaviour
+public class CameraController : MonoBehaviour, IDataPersistence
 {
     [Header("Change Camera Position")]
     [SerializeField] private float speed = 10f;
@@ -62,7 +62,7 @@ public class CameraController : MonoBehaviour
         float horizontal = Input.GetAxis("Mouse X");
         float vertical = Input.GetAxis("Mouse Y");
 
-        if(Input.GetMouseButton(0))
+        if(Input.GetMouseButton(1))
         {
             transform.position += new Vector3(-horizontal, 0, -vertical) * speed * Time.deltaTime;
         }
@@ -72,5 +72,15 @@ public class CameraController : MonoBehaviour
     {
         currentZoom = Mathf.Clamp(currentZoom - Input.mouseScrollDelta.y * zoomSpeed * Time.deltaTime, minZoom, maxZoom);
         mainCamera.orthographicSize = Mathf.Lerp(mainCamera.orthographicSize, currentZoom, zoomSmoothness * Time.deltaTime);
+    }
+
+    public void LoadData(GameData data)
+    {
+        transform.position = data.cameraPosition;
+    }
+
+    public void SaveData(ref GameData data)
+    {
+        data.cameraPosition = transform.position;
     }
 }
