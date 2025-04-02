@@ -9,7 +9,7 @@ public class HintManager : MonoBehaviour
     public static HintManager Instance;
 
     [SerializeField] private GameObject notEnoughtMoney;
-    [SerializeField] private GameObject notEnoughtHallTyre;
+    [SerializeField] private GameObject noMoreHallTown;
 
     [SerializeField] private GameObject noSuitableFactory;
     [SerializeField] private TextMeshProUGUI factoryName;
@@ -31,18 +31,21 @@ public class HintManager : MonoBehaviour
 
     public void MoneyAlert()
     {
+        AudioManager.Instance.Play("Alert");
         notEnoughtMoney.SetActive(true);
         StartCoroutine(AlertCoroutine(notEnoughtMoney, 2.5f));
     }
 
-    public void HallTyreAlert()
+    public void HallPlacedAlert()
     {
-        notEnoughtHallTyre.SetActive(true);
-        StartCoroutine(AlertCoroutine(notEnoughtHallTyre, 2.5f));
+        AudioManager.Instance.Play("Alert");
+        noMoreHallTown.SetActive(true);
+        StartCoroutine(AlertCoroutine(noMoreHallTown, 2.5f));
     }
 
     public void NoSuitableFactoryAlert(Building building)
     {
+        AudioManager.Instance.Play("Alert");
         switch (building.name)
         {
             case "AppliancesStore":

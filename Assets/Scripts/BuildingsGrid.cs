@@ -147,6 +147,7 @@ public class BuildingsGrid : MonoBehaviour, IDataPersistence
 
     private void SetBuildingFeatures()
     {
+        AudioManager.Instance.Play("PlaceBuilding");
         flyingBuilding.PlayBuildEffect();
         flyingBuilding.SetNormal();
         MoneyManager.Instance.IncreaseMoneyPerMinute(flyingBuilding.GetMoneyIncreasing());
@@ -160,6 +161,15 @@ public class BuildingsGrid : MonoBehaviour, IDataPersistence
 
     public void StartPlacingBuilding(Building buildingPrefab)
     {
+        if (buildingPrefab is Hall)
+        {
+            if (placedBuildings.Values.Any(h => h is Hall))
+            {
+                HintManager.Instance.HallPlacedAlert();
+                return;
+            }
+        }
+
         if (!CanPlaceBuilding(buildingPrefab))
         {
             HintManager.Instance.NoSuitableFactoryAlert(buildingPrefab);
@@ -223,6 +233,11 @@ public class BuildingsGrid : MonoBehaviour, IDataPersistence
                 buildingInstance.SetNormal();
                 buildingInstance.transform.SetParent(gameObject.transform);
 
+                if(buildingInstance is Hall hall)
+                {
+                    hall.currentTyre = data.hallTyre;
+                }
+
                 buildingInstance.currentRotation = saveData.buildingRotation;
                 buildingInstance.RotateBuilding(buildingInstance.currentRotation);
 
@@ -270,6 +285,12 @@ public class BuildingsGrid : MonoBehaviour, IDataPersistence
         data.buildingsPlaced.Clear();
         foreach (var building in placedBuildings.Values)
         {
+            if(building is Hall hall)
+            {
+                data.hallTyre = hall.currentTyre;
+                data.hallIncreaseFactor = hall.GetCurrentIncreaseFactor();
+            }
+
             data.buildingsPlaced.Add(new BuildingDataSave(building));
         }
 

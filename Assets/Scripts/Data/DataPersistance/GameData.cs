@@ -13,14 +13,30 @@ public class GameData
     public List<BuildingDataSave> buildingsPlaced;
     public List<BuildingDataSave> rockPlaced;
 
+    public int hallTyre;
+    public float hallIncreaseFactor;
+
+    public float audioSliderValue;
+    public float scrollSliderValue;
+    public bool screenMode;
+
     public GameData()
     {
-        this.money = 0;
+        this.money = 100;
         this.diamonds = 0;
         this.moneyPerMinute = 0;
+        this.lastLogoutTime = System.DateTime.Now.ToString();
+        
         buildingsPlaced = new List<BuildingDataSave>();
         rockPlaced = new List<BuildingDataSave>();
-        this.lastLogoutTime = System.DateTime.Now.ToString();
+
+        this.hallTyre = 0;
+        this.hallIncreaseFactor = 0.95f;
+
+        this.audioSliderValue = 0.8f;
+        this.scrollSliderValue = 20f;
+
+        this.screenMode = true;
     }
 }
 
@@ -41,3 +57,4 @@ public class BuildingDataSave
         this.buildingRotation = building.currentRotation;
     }
 }
+

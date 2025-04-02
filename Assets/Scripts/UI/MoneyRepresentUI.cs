@@ -25,10 +25,18 @@ public class MoneyRepresentUI : MonoBehaviour
         MoneyManager.Instance.IncreaseMoney(amount);
     }
 
-    private void GetMoneyPerMinute() => moneyPerHour.text = MoneyManager.Instance.moneyPerMinute.ToString() + "$ / MIN";
+    private void GetMoneyPerMinute() => moneyPerHour.text = FormatMoney(MoneyManager.Instance.moneyPerMinute) + "$ / MIN";
 
-    private void GetDiamondAmount() => diamondAmount.text = MoneyManager.Instance.diamondsAmount.ToString();
+    private void GetDiamondAmount() => diamondAmount.text = FormatMoney(MoneyManager.Instance.diamondsAmount);
 
-    private void GetMoneyAmount() => moneyAmount.text = MoneyManager.Instance.moneyAmount.ToString() + "$";
+    private void GetMoneyAmount() => moneyAmount.text = FormatMoney(MoneyManager.Instance.moneyAmount) + "$";
 
+    private string FormatMoney(float amount)
+    {
+        if (amount >= 1_000_000_000) return (amount / 1_000_000_000f).ToString("0.##") + "B";
+        if (amount >= 1_000_000) return (amount / 1_000_000f).ToString("0.##") + "M";
+        if (amount >= 1_000) return (amount / 1_000f).ToString("0.##") + "K";
+
+        return amount.ToString("N0");
+    }
 }

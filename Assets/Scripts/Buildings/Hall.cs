@@ -5,36 +5,22 @@ using UnityEngine.UI;
 public class Hall : Building
 {
     [SerializeField] private GameObject hallInformation;
-    [SerializeField] private TextMeshProUGUI hallTyre;
+    [SerializeField] private TextMeshProUGUI hallTyreTitle;
     [SerializeField] private TextMeshProUGUI hallIncreaseFactor;
     [SerializeField] private TextMeshProUGUI hallPrice;
     [SerializeField] private Button increaseTyre;
     [SerializeField] private Button closeTyre;
-    [SerializeField] private HallTyre[] hallTyres;
 
-    private int currentTyre = 0;
-    public override void SetNormal()
-    {
-        base.SetNormal();
-        if(currentTyre == 0)
-        {
-            currentTyre = 1;
-        }
-    }
+    [SerializeField] private HallTyres[] hallTyres;
+
+    public int currentTyre = 0;
 
     private void Start()
     {
         closeTyre.onClick.AddListener(CloseHallInformation);
         increaseTyre.onClick.AddListener(IncreaseHallTyre);
 
-        if (MoneyManager.Instance.moneyAmount < hallTyres[currentTyre].priceForTyre)
-        {
-            increaseTyre.interactable = false;
-        }
-        else
-        {
-            increaseTyre.interactable = true;
-        }
+        UpdateHallInformation();
     }
 
     private void CloseHallInformation()
@@ -43,31 +29,61 @@ public class Hall : Building
     }
 
     private void IncreaseHallTyre()
-    {
-        if(currentTyre < hallTyres.Length - 1)
+    {            
+        if (currentTyre < hallTyres.Length - 1 &&
+            MoneyManager.Instance.moneyAmount >= hallTyres[currentTyre].price)
         {
-            MoneyManager.Instance.DecreaseMoney(hallTyres[currentTyre].priceForTyre);
-            MoneyManager.Instance.IncreaseDiamonds(hallTyres[currentTyre].diamondPresent);
+            MoneyManager.Instance.DecreaseMoney(hallTyres[currentTyre].price);
+            MoneyManager.Instance.IncreaseDiamonds(hallTyres[currentTyre].reward);
+
             currentTyre++;
+            
             UpdateHallInformation();
         }
     }
 
     private void UpdateHallInformation()
     {
-        hallTyre.text = "Tyre - " + hallTyres[currentTyre].tyre.ToString();
-        hallIncreaseFactor.text = "IF - " + hallTyres[currentTyre].increaseBuildingsFactor.ToString();
-        hallPrice.text = " - " + hallTyres[currentTyre].priceForTyre.ToString() + "$";
+        hallTyreTitle.text = "Tyre - " + currentTyre.ToString();
+        hallIncreaseFactor.text = "IF - " + hallTyres[currentTyre].increaseFactor.ToString();
+        hallPrice.text = " - " + hallTyres[currentTyre].price.ToString() + "$";
+
+        CheckMoney();
     }
 
     private void OnMouseDown()
     {
         if (isPlaced)
         {
-            hallTyre.text = "Tyre - " + hallTyres[currentTyre].tyre.ToString();
-            hallIncreaseFactor.text = "IF - " + hallTyres[currentTyre].increaseBuildingsFactor.ToString();
-            hallPrice.text = " - " + hallTyres[currentTyre].priceForTyre.ToString() + "$";
+            hallTyreTitle.text = "Tyre - " + currentTyre.ToString();
+            hallIncreaseFactor.text = "IF - " + hallTyres[currentTyre].increaseFactor.ToString();
+            hallPrice.text = " - " + FormatMoney(hallTyres[currentTyre].price) + "$";
+            
+            CheckMoney();
+            
             hallInformation.SetActive(true);
+        }
+    }
+
+    public int GetCurrentTyre()
+    {
+        return currentTyre;
+    }
+
+    public float GetPriceForNextTyre()
+    {
+        return hallTyres[currentTyre].price;
+    }
+
+    private void CheckMoney()
+    {
+        if (MoneyManager.Instance.moneyAmount >= hallTyres[currentTyre].price)
+        {
+            increaseTyre.interactable = true;
+        }
+        else
+        {
+            increaseTyre.interactable = false;
         }
     }
 
@@ -76,13 +92,27 @@ public class Hall : Building
         closeTyre.onClick.RemoveAllListeners();
         increaseTyre.onClick.RemoveAllListeners();
     }
+
+    public float GetCurrentIncreaseFactor()
+    {
+        return hallTyres[currentTyre].increaseFactor;
+    }
+
+    private string FormatMoney(float amount)
+    {
+        if (amount >= 1_000_000_000) return (amount / 1_000_000_000f).ToString("0.##") + "B";
+        if (amount >= 1_000_000) return (amount / 1_000_000f).ToString("0.##") + "M";
+        if (amount >= 1_000) return (amount / 1_000f).ToString("0.##") + "K";
+
+        return amount.ToString("N0");
+    }
 }
 
 [System.Serializable]
-public class HallTyre
+public class HallTyres
 {
     public int tyre;
-    public float priceForTyre;
-    public float diamondPresent;
-    public float increaseBuildingsFactor; 
+    public float price;
+    public float reward;
+    public float increaseFactor;
 }

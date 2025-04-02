@@ -22,9 +22,10 @@ public class CameraController : MonoBehaviour, IDataPersistence
 
     private Camera mainCamera;
 
-    private void Awake()
+    private void Start()
     {
         mainCamera = Camera.main;
+        MenuUI.OnChangeScroll += SetSpeed;
     }
 
     private void LateUpdate()
@@ -74,13 +75,25 @@ public class CameraController : MonoBehaviour, IDataPersistence
         mainCamera.orthographicSize = Mathf.Lerp(mainCamera.orthographicSize, currentZoom, zoomSmoothness * Time.deltaTime);
     }
 
+    public void SetSpeed(float newSpeed)
+    {
+        speed = newSpeed;
+    }
+
     public void LoadData(GameData data)
     {
         transform.position = data.cameraPosition;
+        speed = data.scrollSliderValue;
     }
 
     public void SaveData(ref GameData data)
     {
         data.cameraPosition = transform.position;
+        data.scrollSliderValue = speed;
+    }
+
+    private void OnDisable()
+    {
+        MenuUI.OnChangeScroll -= SetSpeed;
     }
 }

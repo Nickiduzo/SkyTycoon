@@ -1,9 +1,11 @@
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class MenuUI : MonoBehaviour
+public class MenuUI : MonoBehaviour, IDataPersistence
 {
+    public static event Action<float> OnChangeScroll;
     [SerializeField] private Button quitButton;
     [SerializeField] private Button optionsButton;
 
@@ -20,10 +22,11 @@ public class MenuUI : MonoBehaviour
     [Header("Settings")]
     [SerializeField] private GameObject settingsPanel;
     [SerializeField] private Slider volumeSlider;
-    [SerializeField] private Slider sensetivitySlider;
+    [SerializeField] private Slider scrollSlider;
     [SerializeField] private Toggle screenMode;
     [SerializeField] private TextMeshProUGUI screenModeTitle;
     [SerializeField] private Button closeSettingsButton;
+    private float currentVolume;
 
     private void Awake()
     {
@@ -33,6 +36,11 @@ public class MenuUI : MonoBehaviour
 
         openSettingsButton.onClick.AddListener(OpenSettings);
         closeSettingsButton.onClick.AddListener(CloseSettings);
+
+        volumeSlider.onValueChanged.AddListener(OnSliderValueChanged);
+        scrollSlider.onValueChanged.AddListener(OnSensetivityChanged);
+
+        screenMode.onValueChanged.AddListener(OnToggleScreenChanged);
     }
 
     private void Start()
@@ -72,17 +80,27 @@ public class MenuUI : MonoBehaviour
         settingsPanel.SetActive(false);
     }
 
-    private void ChangeVolume()
+    private void OnSliderValueChanged(float value)
     {
-        // later
+        volumeSlider.value = value;
+        currentVolume = value;
+        AudioManager.Instance.SetVolume(currentVolume);
     }
 
-    private void ChangeSensetivity()
+    private void OnSensetivityChanged(float value)
     {
-        // later
+        scrollSlider.value = value;
+        OnChangeScroll?.Invoke(value);
+    }
+
+    private void OnToggleScreenChanged(bool value)
+    {
+        Screen.fullScreen = value;
+        screenModeTitle.text = value == true ? "Full Screen" : "Windowed";
     }
 
     #endregion
+
     private void OnDisable()
     {
         quitButton.onClick.RemoveAllListeners();
@@ -91,6 +109,8 @@ public class MenuUI : MonoBehaviour
 
         closeSettingsButton.onClick.RemoveAllListeners();
         openSettingsButton.onClick.RemoveAllListeners();
+
+        screenMode.onValueChanged.RemoveAllListeners();
     }
 
     private void Exit()
@@ -100,5 +120,20 @@ public class MenuUI : MonoBehaviour
         #if UNITY_EDITOR 
             UnityEditor.EditorApplication.isPlaying = false;
         #endif
+    }
+
+    public void LoadData(GameData data)
+    {
+        volumeSlider.value = data.audioSliderValue;
+        scrollSlider.value = data.scrollSliderValue;
+        Screen.fullScreen = data.screenMode;
+        screenModeTitle.text = Screen.fullScreen == true ? "Full Screen" : "Windowed";
+    }
+
+    public void SaveData(ref GameData data)
+    {
+        data.audioSliderValue = volumeSlider.value;
+        data.scrollSliderValue = scrollSlider.value;
+        data.screenMode = Screen.fullScreen;
     }
 }

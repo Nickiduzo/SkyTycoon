@@ -11,14 +11,18 @@ public class Factory : Building, IDataPersistence
     [SerializeField] private Transform buildingCanvas;
 
     private float coolDown;
-
+    private float maxCoolDown;
     private void Start()
     {
         moneyPerMinuteText.text = BuildingData.MoneyPerMin.ToString();
-        coolDown = BuildingData.MoneyPerMin;
+
+        maxCoolDown = TimeFactorManager.Instance.GetBuildingMaxTime(BuildingData.TimeToEarn);
+
+        coolDown = maxCoolDown;
     }
     private void Update()
     {
+        maxCoolDown = TimeFactorManager.Instance.GetBuildingMaxTime(BuildingData.TimeToEarn);
         LookAtBuildingCanvas();
         CountMoney();
     }
@@ -27,11 +31,11 @@ public class Factory : Building, IDataPersistence
     {
         if (isPlaced)
         {
-            UpdateBar(BuildingData.TimeToEarn, coolDown);
+            UpdateBar(maxCoolDown, coolDown);
 
             if(coolDown <= 0)
             {
-                coolDown = BuildingData.TimeToEarn;
+                coolDown = maxCoolDown;
                 MoneyManager.Instance.IncreaseMoney(BuildingData.MoneyPerMin);
             }
             coolDown -= Time.deltaTime;
@@ -59,7 +63,7 @@ public class Factory : Building, IDataPersistence
             if (DateTime.TryParse(data.lastLogoutTime, out DateTime lastLogout))
             {
                 float offlineTime = (float)(DateTime.Now - lastLogout).TotalSeconds;
-                coolDown = Mathf.Max(0, savedBuilding.coolDown - offlineTime); // Вычитаем время оффлайна
+                coolDown = Mathf.Max(0, savedBuilding.coolDown - offlineTime); 
             }
             else
             {

@@ -439,6 +439,7 @@ Transform:
   m_Children:
   - {fileID: 3108109068644757327}
   - {fileID: 8394087352916537451}
+  - {fileID: 896726796251982937}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3468284755197242143
@@ -455,6 +456,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: c409ce86-f22e-4e10-b73d-bdae221c2ebf
   BuildingData: {fileID: 11400000, guid: 82c4a7257f9d4a647a82fb5370dc7be5, type: 2}
+  buildEffect: {fileID: 930849748849859932}
   MainRenderer: {fileID: 3108109068642332079}
   Size: {x: 4, y: 4}
   position: {x: 0, y: 0, z: 0}
@@ -478,36 +480,45 @@ MonoBehaviour:
     rotationSize: {x: 4, y: 4}
   buildingModel: {fileID: 3108109068644529007}
   hallInformation: {fileID: 6098771139954970621}
-  hallTyre: {fileID: 7525285105651172768}
+  hallTyreTitle: {fileID: 7525285105651172768}
   hallIncreaseFactor: {fileID: 25710876103807786}
   hallPrice: {fileID: 8762470489164551749}
   increaseTyre: {fileID: 9068629277024184985}
   closeTyre: {fileID: 6835367726566971213}
   hallTyres:
   - tyre: 0
-    priceForTyre: 2500
-    diamondPresent: 10
-    increaseBuildingsFactor: 1.2
+    price: 250
+    reward: 5
+    increaseFactor: 0.95
   - tyre: 1
-    priceForTyre: 7500
-    diamondPresent: 25
-    increaseBuildingsFactor: 1.4
+    price: 25000
+    reward: 10
+    increaseFactor: 0.9
   - tyre: 2
-    priceForTyre: 25000
-    diamondPresent: 50
-    increaseBuildingsFactor: 1.6
+    price: 50000
+    reward: 15
+    increaseFactor: 0.85
   - tyre: 3
-    priceForTyre: 75000
-    diamondPresent: 75
-    increaseBuildingsFactor: 1.8
+    price: 100000
+    reward: 20
+    increaseFactor: 0.8
   - tyre: 4
-    priceForTyre: 250000
-    diamondPresent: 100
-    increaseBuildingsFactor: 2
+    price: 500000
+    reward: 25
+    increaseFactor: 0.75
   - tyre: 5
-    priceForTyre: 1000000
-    diamondPresent: 150
-    increaseBuildingsFactor: 2.5
+    price: 1500000
+    reward: 35
+    increaseFactor: 0.7
+  - tyre: 6
+    price: 3500000
+    reward: 45
+    increaseFactor: 0.65
+  - tyre: 7
+    price: 10000000
+    reward: 50
+    increaseFactor: 0.6
+  currentTyre: 0
 --- !u!65 &4081796672145914461
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -527,7 +538,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 4, y: 2, z: 4}
+  m_Size: {x: 3.5, y: 0.5, z: 3.5}
   m_Center: {x: 1.5, y: 0, z: 1.5}
 --- !u!1 &6098771139954970621
 GameObject:
@@ -1526,4 +1537,71 @@ GameObject:
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: b392c3200ebac344fbc91be43739f8c0, type: 3}
   m_PrefabInstance: {fileID: 3108109068644627919}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &8648209435911225952
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 9175928928344785217}
+    m_Modifications:
+    - target: {fileID: 8391698058471534137, guid: b23da5bf7f5adad4fb5e078daa784d8f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.48
+      objectReference: {fileID: 0}
+    - target: {fileID: 8391698058471534137, guid: b23da5bf7f5adad4fb5e078daa784d8f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8391698058471534137, guid: b23da5bf7f5adad4fb5e078daa784d8f, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1.41
+      objectReference: {fileID: 0}
+    - target: {fileID: 8391698058471534137, guid: b23da5bf7f5adad4fb5e078daa784d8f, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 8391698058471534137, guid: b23da5bf7f5adad4fb5e078daa784d8f, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 8391698058471534137, guid: b23da5bf7f5adad4fb5e078daa784d8f, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8391698058471534137, guid: b23da5bf7f5adad4fb5e078daa784d8f, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8391698058471534137, guid: b23da5bf7f5adad4fb5e078daa784d8f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 8391698058471534137, guid: b23da5bf7f5adad4fb5e078daa784d8f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8391698058471534137, guid: b23da5bf7f5adad4fb5e078daa784d8f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8747827535146053845, guid: b23da5bf7f5adad4fb5e078daa784d8f, type: 3}
+      propertyPath: m_Name
+      value: BuildEffect
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: b23da5bf7f5adad4fb5e078daa784d8f, type: 3}
+--- !u!4 &896726796251982937 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8391698058471534137, guid: b23da5bf7f5adad4fb5e078daa784d8f, type: 3}
+  m_PrefabInstance: {fileID: 8648209435911225952}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &930849748849859932 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 8426118643445571388, guid: b23da5bf7f5adad4fb5e078daa784d8f, type: 3}
+  m_PrefabInstance: {fileID: 8648209435911225952}
   m_PrefabAsset: {fileID: 0}
