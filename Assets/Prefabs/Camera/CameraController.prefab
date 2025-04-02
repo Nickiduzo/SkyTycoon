@@ -199,10 +199,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 26
-  xRightLimit: 47
-  xLeftLimit: 12
-  zRightLimit: 32
-  zLeftLimit: -9.5
+  east: 59
+  west: 0
+  north: 37.2
+  south: -15
   zoomSpeed: 10
   zoomSmoothness: 5
   minZoom: 2

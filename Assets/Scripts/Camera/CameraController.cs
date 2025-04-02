@@ -1,3 +1,4 @@
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class CameraController : MonoBehaviour, IDataPersistence
@@ -5,11 +6,11 @@ public class CameraController : MonoBehaviour, IDataPersistence
     [Header("Change Camera Position")]
     [SerializeField] private float speed = 10f;
 
-    [SerializeField] private float xRightLimit = 0;
-    [SerializeField] private float xLeftLimit = 0;
-
-    [SerializeField] private float zRightLimit = 0;
-    [SerializeField] private float zLeftLimit = 0;
+    [Header("Bounds")]
+    [SerializeField] private float east;
+    [SerializeField] private float west;
+    [SerializeField] private float north;
+    [SerializeField] private float south;
 
     [Header("Change Camera Zoom")]
     [SerializeField] private float zoomSpeed = 6f;
@@ -32,30 +33,25 @@ public class CameraController : MonoBehaviour, IDataPersistence
     {
         ZoomCamera();
         MoveCamera();
-        SetLimits();
+
+        ClampCameraPosition();
     }
 
-    private void SetLimits()
+    private void ClampCameraPosition()
     {
-        if (transform.position.x > xRightLimit)
-        {
-            transform.position = new Vector3(xRightLimit, transform.position.y, transform.position.z);
-        }
+        float camSize = mainCamera.orthographicSize;
+        float camWidth = camSize * mainCamera.aspect;
 
-        if (transform.position.x < xLeftLimit)
-        {
-            transform.position = new Vector3(xLeftLimit, transform.position.y, transform.position.z);
-        }
+        float minX = west + camWidth;
+        float maxX = east - camWidth;
+        float minY = south + camSize;
+        float maxY = north - camSize;
 
-        if (transform.position.z > zRightLimit)
-        {
-            transform.position = new Vector3(transform.position.x, transform.position.y, zRightLimit);
-        }
+        Vector3 clampedPosition = transform.position;
+        clampedPosition.x = Mathf.Clamp(clampedPosition.x, minX, maxX);
+        clampedPosition.z = Mathf.Clamp(clampedPosition.z, minY, maxY);
 
-        if (transform.position.z < zLeftLimit)
-        {
-            transform.position = new Vector3(transform.position.x, transform.position.y, zLeftLimit);
-        }
+        transform.position = clampedPosition;
     }
 
     private void MoveCamera()
