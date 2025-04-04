@@ -20,6 +20,8 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 7bbb6349256a5e545b62a498145ad7db, type: 2}
   - {fileID: 2100000, guid: f8e72d38ec25d3e4c924fe7949dbbeed, type: 2}
   - {fileID: 2100000, guid: 8a2f7d47e2d132243a2116ce64679a9c, type: 2}
+  buildingName: Studio Video Games
   price: 350
+  priceForRemove: 0
   moneyPerMinute: 35
   timeToEarn: 1920

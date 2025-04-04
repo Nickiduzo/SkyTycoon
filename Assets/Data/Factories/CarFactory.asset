@@ -21,6 +21,8 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 327f45092c16f2d4e9f498d1b5c84175, type: 2}
   - {fileID: 2100000, guid: 8a2f7d47e2d132243a2116ce64679a9c, type: 2}
   - {fileID: 2100000, guid: 7bbb6349256a5e545b62a498145ad7db, type: 2}
+  buildingName: Car Factory
   price: 50
+  priceForRemove: 0
   moneyPerMinute: 5
   timeToEarn: 120

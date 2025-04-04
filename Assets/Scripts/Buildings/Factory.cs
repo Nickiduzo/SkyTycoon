@@ -9,12 +9,12 @@ public class Factory : Building, IDataPersistence
     [SerializeField] private Image factorySlider;
     [SerializeField] private TextMeshProUGUI moneyPerMinuteText;
     [SerializeField] private Transform buildingCanvas;
-
+ 
     private float coolDown;
     private float maxCoolDown;
     private void Start()
     {
-        moneyPerMinuteText.text = BuildingData.MoneyPerMin.ToString();
+        moneyPerMinuteText.text = BuildingData.MoneyPerMin.ToString() + " $";
 
         maxCoolDown = TimeFactorManager.Instance.GetBuildingMaxTime(BuildingData.TimeToEarn);
 
@@ -83,4 +83,24 @@ public class Factory : Building, IDataPersistence
             savedBuilding.coolDown = coolDown;
         }
     }
+
+    private void OnMouseDown()
+    {
+        if (isPlaced && UIPanelManager.Instance.IsClosePanels())
+        {
+
+        }
+    }
+
+    private void OnDisable()
+    {
+        
+    }
+}
+
+public class FactoryTyres
+{
+    public int tyre;
+    public float price;
+    public float increaseFactor;
 }

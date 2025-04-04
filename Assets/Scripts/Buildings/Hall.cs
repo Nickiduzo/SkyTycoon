@@ -1,15 +1,15 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class Hall : Building
 {
-    [SerializeField] private GameObject hallInformation;
-    [SerializeField] private TextMeshProUGUI hallTyreTitle;
-    [SerializeField] private TextMeshProUGUI hallIncreaseFactor;
+    [SerializeField] private TextMeshProUGUI hallTyre;
+    [SerializeField] private TextMeshProUGUI hallModifier;
     [SerializeField] private TextMeshProUGUI hallPrice;
-    [SerializeField] private Button increaseTyre;
-    [SerializeField] private Button closeTyre;
+
+    [SerializeField] private Button increaseButton;
 
     [SerializeField] private HallTyres[] hallTyres;
 
@@ -17,15 +17,11 @@ public class Hall : Building
 
     private void Start()
     {
-        closeTyre.onClick.AddListener(CloseHallInformation);
-        increaseTyre.onClick.AddListener(IncreaseHallTyre);
+        increaseButton.onClick.AddListener(IncreaseHallTyre);
+
+        AddHoverSound(increaseButton);
 
         UpdateHallInformation();
-    }
-
-    private void CloseHallInformation()
-    {
-        hallInformation.SetActive(false);
     }
 
     private void IncreaseHallTyre()
@@ -33,6 +29,7 @@ public class Hall : Building
         if (currentTyre < hallTyres.Length - 1 &&
             MoneyManager.Instance.moneyAmount >= hallTyres[currentTyre].price)
         {
+            AudioManager.Instance.Play("Click");
             MoneyManager.Instance.DecreaseMoney(hallTyres[currentTyre].price);
             MoneyManager.Instance.IncreaseDiamonds(hallTyres[currentTyre].reward);
 
@@ -44,59 +41,38 @@ public class Hall : Building
 
     private void UpdateHallInformation()
     {
-        hallTyreTitle.text = "Tyre - " + currentTyre.ToString();
-        hallIncreaseFactor.text = "IF - " + hallTyres[currentTyre].increaseFactor.ToString();
-        hallPrice.text = " - " + hallTyres[currentTyre].price.ToString() + "$";
+        hallTyre.text = "Tyre - " + currentTyre.ToString();
+        hallModifier.text = "IF - " + hallTyres[currentTyre].increaseFactor.ToString();
+        hallPrice.text = " - " + FormatMoney(hallTyres[currentTyre].price) + "$";
 
         CheckMoney();
-    }
-
-    private void OnMouseDown()
-    {
-        if (isPlaced)
-        {
-            hallTyreTitle.text = "Tyre - " + currentTyre.ToString();
-            hallIncreaseFactor.text = "IF - " + hallTyres[currentTyre].increaseFactor.ToString();
-            hallPrice.text = " - " + FormatMoney(hallTyres[currentTyre].price) + "$";
-            
-            CheckMoney();
-            
-            hallInformation.SetActive(true);
-        }
-    }
-
-    public int GetCurrentTyre()
-    {
-        return currentTyre;
-    }
-
-    public float GetPriceForNextTyre()
-    {
-        return hallTyres[currentTyre].price;
     }
 
     private void CheckMoney()
     {
         if (MoneyManager.Instance.moneyAmount >= hallTyres[currentTyre].price)
         {
-            increaseTyre.interactable = true;
+            increaseButton.interactable = true;
         }
         else
         {
-            increaseTyre.interactable = false;
+            increaseButton.interactable = false;
         }
-    }
-
-    private void OnDisable()
-    {
-        closeTyre.onClick.RemoveAllListeners();
-        increaseTyre.onClick.RemoveAllListeners();
     }
 
     public float GetCurrentIncreaseFactor()
     {
         return hallTyres[currentTyre].increaseFactor;
     }
+
+    public override void OpenBuildingUI()
+    {
+        hallTyre.text = "Tyre - " + currentTyre.ToString();
+        hallModifier.text = "IF - " + hallTyres[currentTyre].increaseFactor.ToString();
+        hallPrice.text = " - " + FormatMoney(hallTyres[currentTyre].price) + "$";
+        base.OpenBuildingUI();
+    }
+
 
     private string FormatMoney(float amount)
     {
@@ -105,6 +81,30 @@ public class Hall : Building
         if (amount >= 1_000) return (amount / 1_000f).ToString("0.##") + "K";
 
         return amount.ToString("N0");
+    }
+
+    private void AddHoverSound(Button button)
+    {
+        EventTrigger trigger = button.gameObject.AddComponent<EventTrigger>();
+
+        EventTrigger.Entry entry = new EventTrigger.Entry
+        {
+            eventID = EventTriggerType.PointerEnter
+        };
+
+        entry.callback.AddListener((eventData) => PlayHoverSound());
+        
+        trigger.triggers.Add(entry);
+    }
+
+    private void PlayHoverSound()
+    {
+        AudioManager.Instance.Play("Select");
+    }
+
+    private void OnDisable()
+    {
+        increaseButton.onClick.RemoveAllListeners();
     }
 }
 

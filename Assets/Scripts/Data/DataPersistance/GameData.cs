@@ -11,7 +11,8 @@ public class GameData
     public Vector3 cameraPosition;
 
     public List<BuildingDataSave> buildingsPlaced;
-    public List<BuildingDataSave> rockPlaced;
+    public List<BuildingDataSave> borderRocksPlaced;
+    public List<BuildingDataSave> rabishPlaced;
 
     public int hallTyre;
     public float hallIncreaseFactor;
@@ -22,19 +23,22 @@ public class GameData
 
     public GameData()
     {
-        this.money = 100;
+        this.money = 1000;
         this.diamonds = 0;
         this.moneyPerMinute = 0;
         this.lastLogoutTime = System.DateTime.Now.ToString();
         
         buildingsPlaced = new List<BuildingDataSave>();
-        rockPlaced = new List<BuildingDataSave>();
+        borderRocksPlaced = new List<BuildingDataSave>();
+        rabishPlaced = new List<BuildingDataSave>();
 
         this.hallTyre = 0;
         this.hallIncreaseFactor = 0.95f;
 
         this.audioSliderValue = 0.8f;
         this.scrollSliderValue = 20f;
+
+        cameraPosition = new Vector3(30, 0, 11.5f);
 
         this.screenMode = true;
     }

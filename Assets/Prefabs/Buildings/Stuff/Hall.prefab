@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4303528400053626770}
   - component: {fileID: 6364899930287585530}
   - component: {fileID: 9068629277024184985}
+  - component: {fileID: 520917682694932754}
   m_Layer: 5
   m_Name: IncreaseTyre
   m_TagString: Untagged
@@ -67,7 +68,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -8111322212487550922, guid: 4edd415ab2cd6784ea5e7905122a703d, type: 3}
+  m_Sprite: {fileID: -6045235674028870251, guid: 7ed010a2b51d0fb4f9fee6a47b1334fd, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -96,10 +97,10 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 2
+  m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 0.5176471}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
@@ -121,6 +122,23 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &520917682694932754
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2495480122591267002}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls: []
 --- !u!1 &2628332376587528816
 GameObject:
   m_ObjectHideFlags: 0
@@ -236,7 +254,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -3826321483066520666, guid: 5f9fbceed0b35d2428c55a800ea8b1c1, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ee5b75da14ec6a94c90e0f0a5346b860, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -337,7 +355,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '- 250$'
+  m_text: 250$
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 125cb55b44b24c4393181402bc6200e6, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: 125cb55b44b24c4393181402bc6200e6, type: 2}
@@ -371,7 +389,7 @@ MonoBehaviour:
   m_fontSizeMin: 12
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 16
+  m_HorizontalAlignment: 32
   m_VerticalAlignment: 8192
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -381,7 +399,7 @@ MonoBehaviour:
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
   m_enableWordWrapping: 1
-  m_wordWrappingRatios: 0.4
+  m_wordWrappingRatios: 0
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
@@ -454,13 +472,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f00d5e7373b7022429b6129e92ce13c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: c409ce86-f22e-4e10-b73d-bdae221c2ebf
   BuildingData: {fileID: 11400000, guid: 82c4a7257f9d4a647a82fb5370dc7be5, type: 2}
   buildEffect: {fileID: 930849748849859932}
-  MainRenderer: {fileID: 3108109068642332079}
-  Size: {x: 4, y: 4}
-  position: {x: 0, y: 0, z: 0}
-  currentRotation: 0
+  id: 534a55bb-8742-4ca8-8c48-12bb3c353abd
   buildingRotations:
   - rotationName: East
     buildingPosition: {x: 2.5, y: 0, z: 0.25}
@@ -478,13 +492,20 @@ MonoBehaviour:
     buildingPosition: {x: 2.65, y: 0, z: 2.565}
     buildingRotation: {x: 0, y: 270, z: 0}
     rotationSize: {x: 4, y: 4}
+  currentRotation: 0
+  Size: {x: 4, y: 4}
+  position: {x: 0, y: 0, z: 0}
   buildingModel: {fileID: 3108109068644529007}
-  hallInformation: {fileID: 6098771139954970621}
-  hallTyreTitle: {fileID: 7525285105651172768}
-  hallIncreaseFactor: {fileID: 25710876103807786}
+  MainRenderer: {fileID: 3108109068642332079}
+  uiInterface: {fileID: 6098771139954970621}
+  buildingTitle: {fileID: 190524176627924290}
+  priceForRemove: {fileID: 0}
+  removeBuildingButton: {fileID: 0}
+  closeButton: {fileID: 6835367726566971213}
+  hallTyre: {fileID: 7525285105651172768}
+  hallModifier: {fileID: 25710876103807786}
   hallPrice: {fileID: 8762470489164551749}
-  increaseTyre: {fileID: 9068629277024184985}
-  closeTyre: {fileID: 6835367726566971213}
+  increaseButton: {fileID: 9068629277024184985}
   hallTyres:
   - tyre: 0
     price: 250
@@ -538,8 +559,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 3.5, y: 0.5, z: 3.5}
-  m_Center: {x: 1.5, y: 0, z: 1.5}
+  m_Size: {x: 4, y: 1, z: 4}
+  m_Center: {x: 1.5, y: 0.6, z: 1.5}
 --- !u!1 &6098771139954970621
 GameObject:
   m_ObjectHideFlags: 0
@@ -826,7 +847,7 @@ MonoBehaviour:
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
   m_enableWordWrapping: 1
-  m_wordWrappingRatios: 0.4
+  m_wordWrappingRatios: 0.05
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
@@ -1348,7 +1369,7 @@ MonoBehaviour:
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
   m_enableWordWrapping: 1
-  m_wordWrappingRatios: 0.231
+  m_wordWrappingRatios: 0.05
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
@@ -1384,7 +1405,6 @@ GameObject:
   - component: {fileID: 6045873088781259421}
   - component: {fileID: 3240073852764642388}
   - component: {fileID: 5301777781097538328}
-  - component: {fileID: 3156768739763162946}
   m_Layer: 5
   m_Name: Static
   m_TagString: Untagged
@@ -1453,19 +1473,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &3156768739763162946
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8493114497165268327}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Delegates: []
 --- !u!1001 &3108109068644627919
 PrefabInstance:
   m_ObjectHideFlags: 0

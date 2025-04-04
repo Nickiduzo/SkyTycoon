@@ -17,6 +17,8 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 102bae77eac3d8747b1ad278ad01d1b7, type: 2}
   - {fileID: 2100000, guid: 7bbb6349256a5e545b62a498145ad7db, type: 2}
   - {fileID: 2100000, guid: dd85904dbff75324591e64896cddd928, type: 2}
+  buildingName: Car Store
   price: 60
+  priceForRemove: 0
   moneyPerMinute: 6
   timeToEarn: 60

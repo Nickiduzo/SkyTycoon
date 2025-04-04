@@ -19,6 +19,8 @@ MonoBehaviour:
   - {fileID: 2100000, guid: a941546ed3509a5418833dc559e9e3a5, type: 2}
   - {fileID: 2100000, guid: 7bbb6349256a5e545b62a498145ad7db, type: 2}
   - {fileID: 2100000, guid: 8a2f7d47e2d132243a2116ce64679a9c, type: 2}
+  buildingName: Appliances Store
   price: 35
+  priceForRemove: 0
   moneyPerMinute: 3
   timeToEarn: 30

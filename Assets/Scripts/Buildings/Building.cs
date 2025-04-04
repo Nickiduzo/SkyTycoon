@@ -1,23 +1,52 @@
+using System;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Building : MonoBehaviour
 {
+    public static event Action<Building> OnDelete;
+
+    [Header("Information")]
+    [SerializeField] protected BuildingData BuildingData;
+    [SerializeField] private ParticleSystem buildEffect;
     [HideInInspector] public string id;
 
-    [SerializeField] protected BuildingData BuildingData;
-
-    [SerializeField] private ParticleSystem buildEffect;
-    
-    public Renderer MainRenderer;
-    public Vector2Int Size = Vector2Int.one;
-
-    public Vector3 position;
-
-    public int currentRotation;
+    [Header("Rotation")]
     public BuildingRotation[] buildingRotations;
-    public GameObject buildingModel;
+    public int currentRotation;
 
+    [Header("Position")]
+    public Vector2Int Size = Vector2Int.one;
+    public Vector3 position;
     protected bool isPlaced = false;
+
+    [Header("Building Data")]
+    [SerializeField] private GameObject buildingModel;
+    [SerializeField] private Renderer MainRenderer;
+
+    [Header("Building Interface")]
+    [SerializeField] private GameObject uiInterface;
+    [SerializeField] private TextMeshProUGUI buildingTitle;
+    [SerializeField] private TextMeshProUGUI priceForRemove;
+    [SerializeField] private Button removeBuildingButton;
+    [SerializeField] private Button closeButton;
+    
+    private const float doubleClickThreshold = 0.3f;
+    private float lastClickTime = 0f;
+
+    private void Start()
+    {
+        if (removeBuildingButton != null)
+        {
+            removeBuildingButton.onClick.AddListener(RemoveBuilding);
+        }
+
+        if (closeButton != null)
+        {
+            closeButton.onClick.AddListener(CloseInterface);
+        }
+    }
 
     public void SetTransparent(bool avaible)
     {
@@ -59,6 +88,19 @@ public class Building : MonoBehaviour
         Size = buildingRotations[currentRotation].rotationSize;
     }
 
+    public void SetRotation(int value)
+    {
+        if(value >= 0 && value < buildingRotations.Length)
+        {
+            currentRotation = value;
+
+            buildingModel.transform.localPosition = buildingRotations[currentRotation].buildingPosition;
+            buildingModel.transform.localRotation = Quaternion.Euler(buildingRotations[currentRotation].buildingRotation);
+
+            Size = buildingRotations[currentRotation].rotationSize;
+        }
+    }
+
     private void GenerateGuid()
     {
         id = System.Guid.NewGuid().ToString();
@@ -82,6 +124,77 @@ public class Building : MonoBehaviour
     {
         return id;
     }
+
+
+    #region UI
+
+    public void CloseInterface()
+    {
+        UIPanelManager.Instance.panelIsActive = false;
+        AudioManager.Instance.Play("Click");
+        uiInterface.SetActive(false);
+    }
+
+    public virtual void OpenBuildingUI()
+    {
+        buildingTitle.text = BuildingData.Name.ToString();
+        if (priceForRemove != null)
+        {
+            priceForRemove.text = BuildingData.RemovePrice.ToString() + " $";
+        }
+        uiInterface.SetActive(true);        
+    }
+
+    private void RemoveBuilding()
+    {
+        UIPanelManager.Instance.panelIsActive = false;
+        AudioManager.Instance.Play("Click");
+        uiInterface.SetActive(false);
+        OnDelete?.Invoke(this);
+    }
+
+    private void OnMouseDown()
+    {
+        if (Time.time - lastClickTime < doubleClickThreshold && UIPanelManager.Instance.IsClosePanels())
+        {
+            if (!(this is Hall))
+            {
+                UIPanelManager.Instance.panelIsActive = true;
+            }
+
+            AudioManager.Instance.Play("Select");
+            OpenBuildingUI();
+        }
+        lastClickTime = Time.time;
+    }
+
+    private void OnDestroy()
+    {
+        if (removeBuildingButton != null)
+        {
+            removeBuildingButton.onClick.RemoveAllListeners();
+        }
+
+        if (closeButton != null)
+        {
+            closeButton.onClick.RemoveAllListeners();
+        }
+    }
+
+    private void OnDisable()
+    {
+        if (removeBuildingButton != null)
+        {
+            removeBuildingButton.onClick.RemoveAllListeners();
+        }
+    
+        if (closeButton != null)
+        {
+            closeButton.onClick.RemoveAllListeners();
+        }
+    }
+
+    #endregion
 
     private void OnDrawGizmos()
     {

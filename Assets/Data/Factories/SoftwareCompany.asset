@@ -19,6 +19,8 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 4fe229b2d25565748a911830ab166af6, type: 2}
   - {fileID: 2100000, guid: 3e56ece2e1116884a9c9329e2488f105, type: 2}
   - {fileID: 2100000, guid: 7bbb6349256a5e545b62a498145ad7db, type: 2}
+  buildingName: Software Company
   price: 250
+  priceForRemove: 0
   moneyPerMinute: 25
   timeToEarn: 960

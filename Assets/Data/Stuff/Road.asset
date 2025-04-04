@@ -14,5 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   materials:
   - {fileID: 2100000, guid: 3a31eb4847dbaef47a28ab3113c4bfb1, type: 2}
+  buildingName: Road
   price: 15
+  priceForRemove: 0
   moneyPerMinute: 0
+  timeToEarn: 0

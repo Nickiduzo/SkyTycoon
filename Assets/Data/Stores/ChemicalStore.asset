@@ -21,6 +21,8 @@ MonoBehaviour:
   - {fileID: 2100000, guid: dd85904dbff75324591e64896cddd928, type: 2}
   - {fileID: 2100000, guid: 4fe229b2d25565748a911830ab166af6, type: 2}
   - {fileID: 2100000, guid: 7ef550ebe1cc9a849b3a4d38e46cf088, type: 2}
+  buildingName: Chemical Store
   price: 95
+  priceForRemove: 0
   moneyPerMinute: 9
   timeToEarn: 90

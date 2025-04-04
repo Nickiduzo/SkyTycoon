@@ -16,5 +16,8 @@ MonoBehaviour:
   - {fileID: 2100000, guid: d14afe0b179d2f24e95e6dbc3d596886, type: 2}
   - {fileID: 2100000, guid: 95f4e8ac89c60734a86307face746d60, type: 2}
   - {fileID: 2100000, guid: 1cf2c069277a26849adb459b3f9cd778, type: 2}
+  buildingName: Tree
   price: 75
+  priceForRemove: 0
   moneyPerMinute: 0
+  timeToEarn: 0
