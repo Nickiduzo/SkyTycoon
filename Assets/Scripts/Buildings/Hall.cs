@@ -44,20 +44,6 @@ public class Hall : Building
         hallTyre.text = "Tyre - " + currentTyre.ToString();
         hallModifier.text = "IF - " + hallTyres[currentTyre].increaseFactor.ToString();
         hallPrice.text = " - " + FormatMoney(hallTyres[currentTyre].price) + "$";
-
-        CheckMoney();
-    }
-
-    private void CheckMoney()
-    {
-        if (MoneyManager.Instance.moneyAmount >= hallTyres[currentTyre].price)
-        {
-            increaseButton.interactable = true;
-        }
-        else
-        {
-            increaseButton.interactable = false;
-        }
     }
 
     public float GetCurrentIncreaseFactor()
