@@ -15,7 +15,7 @@ public class Hall : Building
 
     public int currentTyre = 0;
 
-    private void Start()
+    private void OnEnable()
     {
         increaseButton.onClick.AddListener(IncreaseHallTyre);
 
@@ -29,7 +29,7 @@ public class Hall : Building
         if (currentTyre < hallTyres.Length - 1 &&
             MoneyManager.Instance.moneyAmount >= hallTyres[currentTyre].price)
         {
-            AudioManager.Instance.Play("Click");
+            AudioManager.Instance.Play("ButtonClick");
             MoneyManager.Instance.DecreaseMoney(hallTyres[currentTyre].price);
             MoneyManager.Instance.IncreaseDiamonds(hallTyres[currentTyre].reward);
 
@@ -67,10 +67,10 @@ public class Hall : Building
 
     public override void OpenBuildingUI()
     {
+        base.OpenBuildingUI();
         hallTyre.text = "Tyre - " + currentTyre.ToString();
         hallModifier.text = "IF - " + hallTyres[currentTyre].increaseFactor.ToString();
         hallPrice.text = " - " + FormatMoney(hallTyres[currentTyre].price) + "$";
-        base.OpenBuildingUI();
     }
 
 
@@ -99,7 +99,7 @@ public class Hall : Building
 
     private void PlayHoverSound()
     {
-        AudioManager.Instance.Play("Select");
+        AudioManager.Instance.Play("ButtonSelect");
     }
 
     private void OnDisable()

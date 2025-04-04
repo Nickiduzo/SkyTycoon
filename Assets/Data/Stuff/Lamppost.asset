@@ -14,6 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   materials:
   - {fileID: 2100000, guid: 63ac02641efdf374788d7d14242bde68, type: 2}
+  buildingName: Lamp
   price: 150
+  priceForRemove: 0
   moneyPerMinute: 0
   timeToEarn: 0

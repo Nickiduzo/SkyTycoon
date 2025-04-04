@@ -17,6 +17,7 @@ public class AudioManager : MonoBehaviour, IDataPersistence
         {
             Destroy(Instance.gameObject);
         }
+        transform.SetParent(null);
         DontDestroyOnLoad(Instance);
         
         InitializeSounds();

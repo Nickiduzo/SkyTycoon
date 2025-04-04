@@ -12,11 +12,10 @@ public class Factory : Building, IDataPersistence
  
     private float coolDown;
     private float maxCoolDown;
-    private void Start()
+
+    private void OnEnable()
     {
         moneyPerMinuteText.text = BuildingData.MoneyPerMin.ToString() + " $";
-
-        maxCoolDown = TimeFactorManager.Instance.GetBuildingMaxTime(BuildingData.TimeToEarn);
 
         coolDown = maxCoolDown;
     }
@@ -45,6 +44,7 @@ public class Factory : Building, IDataPersistence
     private void UpdateBar(float max, float current)
     {
         factorySlider.fillAmount = current / max;
+        print(factorySlider.fillAmount);
     }
 
     private void LookAtBuildingCanvas()
@@ -70,6 +70,8 @@ public class Factory : Building, IDataPersistence
                 coolDown = savedBuilding.coolDown;
                 print("Can't detect time");
             }
+
+            
         }
     }
 
@@ -84,23 +86,9 @@ public class Factory : Building, IDataPersistence
         }
     }
 
-    private void OnMouseDown()
+    public override void OpenBuildingUI()
     {
-        if (isPlaced && UIPanelManager.Instance.IsClosePanels())
-        {
-
-        }
-    }
-
-    private void OnDisable()
-    {
-        
+        base.OpenBuildingUI();
     }
 }
 
-public class FactoryTyres
-{
-    public int tyre;
-    public float price;
-    public float increaseFactor;
-}

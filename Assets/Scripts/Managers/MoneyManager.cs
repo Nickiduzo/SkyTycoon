@@ -18,7 +18,7 @@ public class MoneyManager : MonoBehaviour, IDataPersistence
         {
             Destroy(this.gameObject);
         }
-
+        transform.SetParent(null);
         DontDestroyOnLoad(gameObject);
     }
 
@@ -36,6 +36,12 @@ public class MoneyManager : MonoBehaviour, IDataPersistence
     public void IncreaseMoneyPerMinute(float amount)
     {
         moneyPerMinute += amount;
+    }
+    
+    public void DecreaseMoneyPerMinute(float amount)
+    {
+        if(amount >= moneyPerMinute) return;
+        moneyPerMinute -= amount;
     }
 
     public void IncreaseDiamonds(float amount)

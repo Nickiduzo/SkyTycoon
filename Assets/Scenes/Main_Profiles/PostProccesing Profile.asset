@@ -67,7 +67,7 @@ MonoBehaviour:
     value: 0.25
   quality:
     overrideState: 1
-    value: 4
+    value: 3
 --- !u!114 &3210434226538122884
 MonoBehaviour:
   m_ObjectHideFlags: 3

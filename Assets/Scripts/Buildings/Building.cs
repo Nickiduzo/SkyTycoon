@@ -131,7 +131,7 @@ public class Building : MonoBehaviour
     public void CloseInterface()
     {
         UIPanelManager.Instance.panelIsActive = false;
-        AudioManager.Instance.Play("Click");
+        AudioManager.Instance.Play("ButtonClick");
         uiInterface.SetActive(false);
     }
 
@@ -148,21 +148,17 @@ public class Building : MonoBehaviour
     private void RemoveBuilding()
     {
         UIPanelManager.Instance.panelIsActive = false;
-        AudioManager.Instance.Play("Click");
+        AudioManager.Instance.Play("ButtonClick");
         uiInterface.SetActive(false);
         OnDelete?.Invoke(this);
     }
 
     private void OnMouseDown()
     {
-        if (Time.time - lastClickTime < doubleClickThreshold && UIPanelManager.Instance.IsClosePanels())
+        if (Time.time - lastClickTime < doubleClickThreshold && UIPanelManager.Instance.IsClosePanels() && isPlaced)
         {
-            if (!(this is Hall))
-            {
-                UIPanelManager.Instance.panelIsActive = true;
-            }
-
-            AudioManager.Instance.Play("Select");
+            UIPanelManager.Instance.panelIsActive = true;
+            AudioManager.Instance.Play("BuildingSelect");
             OpenBuildingUI();
         }
         lastClickTime = Time.time;
@@ -172,25 +168,12 @@ public class Building : MonoBehaviour
     {
         if (removeBuildingButton != null)
         {
-            removeBuildingButton.onClick.RemoveAllListeners();
+            removeBuildingButton.onClick.RemoveListener(RemoveBuilding);
         }
 
         if (closeButton != null)
         {
-            closeButton.onClick.RemoveAllListeners();
-        }
-    }
-
-    private void OnDisable()
-    {
-        if (removeBuildingButton != null)
-        {
-            removeBuildingButton.onClick.RemoveAllListeners();
-        }
-    
-        if (closeButton != null)
-        {
-            closeButton.onClick.RemoveAllListeners();
+            closeButton.onClick.RemoveListener(CloseInterface);
         }
     }
 

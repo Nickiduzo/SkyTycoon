@@ -260,15 +260,6 @@ public class BuildingsGrid : MonoBehaviour, IDataPersistence
 
     public void StartPlacingBuilding(Building buildingPrefab)
     {
-        if (buildingPrefab is Hall)
-        {
-            if (placedBuildings.Values.Any(h => h is Hall))
-            {
-                HintManager.Instance.HallPlacedAlert();
-                return;
-            }
-        }
-
         if (!CanPlaceBuilding(buildingPrefab))
         {
             HintManager.Instance.NoSuitableFactoryAlert(buildingPrefab);
@@ -317,6 +308,8 @@ public class BuildingsGrid : MonoBehaviour, IDataPersistence
             placedBuildings.Remove(buildingId);
         }
 
+        AudioManager.Instance.Play("Explosion");
+        MoneyManager.Instance.DecreaseMoneyPerMinute(building.GetMoneyIncreasing());
         Instantiate(destructionEffect, building.transform.position, Quaternion.identity);
 
         Destroy(building.gameObject);
@@ -415,7 +408,6 @@ public class BuildingsGrid : MonoBehaviour, IDataPersistence
             }
         }
     }
-
 
     public void SaveData(ref GameData data)
     {

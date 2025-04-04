@@ -16,7 +16,7 @@ public class TimeFactorManager : MonoBehaviour, IDataPersistence
         {
             Destroy(this.gameObject);
         }
-
+        transform.SetParent(null);
         DontDestroyOnLoad(gameObject);
     }
 

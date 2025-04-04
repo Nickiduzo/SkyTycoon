@@ -51,9 +51,51 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: a0f34177159d3e24fb7131341c34353b, type: 3}
     loop: 1
     source: {fileID: 0}
-  - clipName: Select
+  - clipName: ButtonClick
     volume: 1
     pitch: 1
-    clip: {fileID: 8300000, guid: a0f34177159d3e24fb7131341c34353b, type: 3}
+    clip: {fileID: 8300000, guid: e7cf0ee14a8742049993f0e88e04ba79, type: 3}
+    loop: 0
+    source: {fileID: 0}
+  - clipName: ButtonSelect
+    volume: 1
+    pitch: 1
+    clip: {fileID: 8300000, guid: 00cd7f2abb01f544894ebb7b4a356a0d, type: 3}
+    loop: 0
+    source: {fileID: 0}
+  - clipName: Alert
+    volume: 1
+    pitch: 1
+    clip: {fileID: 8300000, guid: 9339a6a97b60c3f43aca9b58a7158d48, type: 3}
+    loop: 0
+    source: {fileID: 0}
+  - clipName: PickBuilding
+    volume: 1
+    pitch: 1
+    clip: {fileID: 8300000, guid: a2fd027538b863841a09a3ea919b2825, type: 3}
+    loop: 0
+    source: {fileID: 0}
+  - clipName: PlaceBuilding
+    volume: 1
+    pitch: 1
+    clip: {fileID: 8300000, guid: fe191afae58037e498d86b4a0dd62572, type: 3}
+    loop: 0
+    source: {fileID: 0}
+  - clipName: TakeMoney
+    volume: 1
+    pitch: 1
+    clip: {fileID: 8300000, guid: 0d567c155e7692c4fb851254d1e60ed5, type: 3}
+    loop: 0
+    source: {fileID: 0}
+  - clipName: Explosion
+    volume: 1
+    pitch: 1
+    clip: {fileID: 8300000, guid: 68d0573dfc979c34f838883c3f82bdea, type: 3}
+    loop: 0
+    source: {fileID: 0}
+  - clipName: BuildingSelect
+    volume: 1
+    pitch: 1
+    clip: {fileID: 8300000, guid: 42ed56c84fbeb8d4f96c5bbe028e9365, type: 3}
     loop: 0
     source: {fileID: 0}

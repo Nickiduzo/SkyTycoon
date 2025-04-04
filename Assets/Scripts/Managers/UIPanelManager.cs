@@ -18,6 +18,7 @@ public class UIPanelManager : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
+        transform.SetParent(null);
         DontDestroyOnLoad(gameObject);
     }
 
